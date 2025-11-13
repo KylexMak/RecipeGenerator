@@ -1,11 +1,17 @@
-'use client'; // This component MUST be a client component
+"use client"; // This component MUST be a client component
 
-import {SessionProvider} from 'next-auth/react';
+import { ThemeProvider } from "@/components/theme-provide";
+import { SessionProvider } from "next-auth/react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <SessionProvider>
-      {children}
-    </SessionProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <SessionProvider>{children}</SessionProvider>
+    </ThemeProvider>
   );
 }
